@@ -29,6 +29,12 @@ dependencies:
   intl: ^0.18.1
   shared_preferences: ^2.2.2
 
+
+  # video 
+  youtube_player_iframe: ^4.0.4
+  just_audio: ^0.9.36
+  url_launcher: ^6.2.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

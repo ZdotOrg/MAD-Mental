@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mental_zen/screens/home_screen.dart';
 import 'package:mental_zen/screens/mood_entry_screen.dart';
 import 'package:mental_zen/screens/mindfulness_screen.dart';
+import 'package:mental_zen/screens/login_screen.dart';
+import 'package:mental_zen/services/auth_service.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -12,6 +14,7 @@ class MainNavigation extends StatefulWidget {
 
 class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
+  final AuthService _authService = AuthService();
 
   final List<Widget> _screens = [
     const HomeScreen(),
@@ -19,9 +22,35 @@ class _MainNavigationState extends State<MainNavigation> {
     const MindfulnessScreen(),
   ];
 
+  final List<String> _titles = [
+    'Mental Zen',
+    'Track Your Mood',
+    'Mindfulness Library',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_titles[_currentIndex]),
+        backgroundColor: const Color(0xFF667EEA),
+        foregroundColor: Colors.white,
+        actions: _currentIndex == 0 ? [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              await _authService.signOut();
+              if (context.mounted) {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
+                );
+              }
+            },
+          ),
+        ] : null,
+      ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -30,6 +59,7 @@ class _MainNavigationState extends State<MainNavigation> {
             _currentIndex = index;
           });
         },
+        backgroundColor: Colors.white,
         selectedItemColor: const Color(0xFF667EEA),
         unselectedItemColor: Colors.grey,
         items: const [
