@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';  // ADD THIS LINE
+import 'firebase_options.dart';
 import 'package:mental_zen/services/auth_service.dart';
 import 'package:mental_zen/services/fcm_service.dart';
 import 'package:mental_zen/screens/login_screen.dart';
 import 'package:mental_zen/screens/notif_setup_screen.dart';
-import 'package:mental_zen/screens/home_screen.dart';
+import 'package:mental_zen/screens/nav_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   // Initialize Firebase with generated options
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,  // ADD THIS LINE
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   
   // Initialize FCM listeners
@@ -88,7 +88,8 @@ class _AuthWrapperState extends State<AuthWrapper> {
               return NotificationSetupScreen(userId: user.uid);
             }
 
-            return const HomeScreen();
+            // Changed from HomeScreen to MainNavigation
+            return const MainNavigation();
           },
         );
       },

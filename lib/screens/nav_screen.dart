@@ -36,19 +36,14 @@ class _MainNavigationState extends State<MainNavigation> {
         backgroundColor: const Color(0xFF667EEA),
         foregroundColor: Colors.white,
         actions: _currentIndex == 0 ? [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await _authService.signOut();
-              if (context.mounted) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ),
-                );
-              }
-            },
-          ),
+          // In nav_screen.dart, around line 46-54
+IconButton(
+  icon: const Icon(Icons.logout),
+  onPressed: () async {
+    await _authService.signOut();
+    // Remove the Navigator code - let AuthWrapper handle it
+  },
+),
         ] : null,
       ),
       body: _screens[_currentIndex],

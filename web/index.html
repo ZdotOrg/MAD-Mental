@@ -31,6 +31,26 @@
 
   <title>mad_mental</title>
   <link rel="manifest" href="manifest.json">
+<!-- Firebase SDK - ALL SAME VERSION -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCR_BdUYFUmz4VY71XpSxhzVM2G0ttsQAk",
+    authDomain: "mad-mental-8a3e5.firebaseapp.com",
+    projectId: "mad-mental-8a3e5",
+    storageBucket: "mad-mental-8a3e5.firebasestorage.app",
+    messagingSenderId: "404234213875",
+    appId: "1:404234213875:web:a6ab007acc3e9b50c91a86"
+  };
+
+  const app = initializeApp(firebaseConfig);
+</script>
+
+
+
 </head>
 <body>
   <!--
